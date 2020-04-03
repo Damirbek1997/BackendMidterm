@@ -5,7 +5,10 @@ import com.example.midterm.Models.Customers;
 import com.example.midterm.Repositories.CustomersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/")
@@ -24,16 +27,26 @@ public class MainController {
 
     // Retrieves all customers in table
     @GetMapping("/customers")
-    public @ResponseBody Iterable<Customers> getAllUsers() {
-        // This returns a JSON or XML with the users
-        return customersRepository.findAll();
+    public String getAllCustomers(Model model) {
+        List<Customers> customers = customersRepository.findAll();
+
+        if (customers != null) {
+            model.addAttribute("customers", customers);
+        }
+
+        return "customers";
+    }
+
+    @GetMapping("/addcustomer")
+    public String getAddCustomerPage() {
+        return "add_customer";
     }
 
     // Add new customer into table
     @PostMapping("/addcustomer")
     public String addCustomer(@RequestBody Customers customers) {
-        customersDao.create(customers);
-
-        return "redirect:customers";
+//        customersDao.create(customers);
+        customersRepository.save(customers);
+        return "redirect:/customers";
     }
 }
