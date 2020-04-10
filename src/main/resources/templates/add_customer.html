@@ -5,8 +5,8 @@
     <title>Adding Customer</title>
 </head>
 <body>
-    <h1 th:text="#{label.form.title}">form</h1>
-    <form method="POST" th:action="@{/addcustomer}">
+    <h1>Adding customer form</h1>
+    <form method="POST" th:action="@{/add_customer}">
         <label for="firstName">First name:</label>
         <input type="text" name="firstName" size="50"><br>
         <label for="lastName">Last name:</label>
@@ -23,5 +23,9 @@
         <input type="text" name="webPage" size="50"><br>
         <input type="submit">
     </form>
+
+    <div>
+        <a href="../customers">Back</a>
+    </div>
 </body>
 </html>

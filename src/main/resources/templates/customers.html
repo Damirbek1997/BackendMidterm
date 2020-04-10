@@ -7,7 +7,7 @@
 <h2>Customers</h2>
 <div th:unless="${#lists.isEmpty(customers)}">
     <table>
-        <tr class="customerHeadline">
+        <tr>
             <td>Id</td>
             <td>Full name</td>
             <td>Email</td>
@@ -41,8 +41,11 @@
     <p>No customers</p>
 </div>
 <hr/>
-<div class="customerHeadline">
-    <a href="../add">Add customer</a>
+<div>
+    <a href="../add_customer">Add customer</a>
+</div>
+<div>
+    <a href="../home">Home page</a>
 </div>
 </body>
 </html>

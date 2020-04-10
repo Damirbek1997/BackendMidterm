@@ -4,5 +4,14 @@
 </head>
 <body>
     <h3>Welcome message</h3>
+    <div>
+        <a href="../add_customer">Add customer</a>
+    </div>
+    <div>
+        <a href="../customers">View all customers</a>
+    </div>
+    <form method="post" th:action="@{/logout}">
+        <input type="submit" value="Sign Out"/>
+    </form>
 </body>
 </html>

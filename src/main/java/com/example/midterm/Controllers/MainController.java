@@ -1,6 +1,5 @@
 package com.example.midterm.Controllers;
 
-import com.example.midterm.Dao.CustomersDao;
 import com.example.midterm.Models.Customers;
 import com.example.midterm.Repositories.CustomersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,36 +15,26 @@ public class MainController {
     @Autowired
     CustomersRepository customersRepository;
 
-    @Autowired
-    CustomersDao customersDao;
-
-    // Returns home.html
-    @RequestMapping("/home")
-    public String getHomePage() {
-        return "home";
-    }
-
-    // Retrieves all customers in table
+    // Retrieves all customers from database
     @GetMapping("/customers")
     public String getAllCustomers(Model model) {
         List<Customers> customers = customersRepository.findAll();
 
-        if (customers != null) {
+        if (customers != null)
             model.addAttribute("customers", customers);
-        }
 
         return "customers";
     }
 
-    @GetMapping("/addcustomer")
+    // Get page add customer
+    @GetMapping("/add_customer")
     public String getAddCustomerPage() {
         return "add_customer";
     }
 
     // Add new customer into table
-    @PostMapping("/addcustomer")
-    public String addCustomer(@RequestBody Customers customers) {
-//        customersDao.create(customers);
+    @PostMapping("/add_customer")
+    public String addCustomer(Customers customers) {
         customersRepository.save(customers);
         return "redirect:/customers";
     }
